@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOCreator.cs" />
     <Compile Include="Faker.cs" />
     <Compile Include="IGenerator.cs" />
     <Compile Include="IntGenerator.cs" />

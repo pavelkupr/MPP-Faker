@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using MPP2.Generator;
 
-// Добавить синглтон и статическое свойство со счетчиком вложенности
 namespace MPP2
 {
 	class ObjCreator
