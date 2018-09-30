@@ -9,6 +9,20 @@ namespace MPP2
 {
 	class ObjCreator
 	{
-		Dictionary<Type, IGenerator> generators;
+		private Dictionary<Type, IGenerator> generators;
+
+		public ObjCreator()
+		{
+			generators = new Dictionary<Type, IGenerator>();
+		}
+
+		public object Create(Type type)
+		{
+			IGenerator generator;
+			if (generators.TryGetValue(type, out generator))
+				return generator.Generate();
+			else
+				return null;
+		}
 	}
 }

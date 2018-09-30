@@ -9,6 +9,13 @@ namespace MPP2
 {
 	class Faker
 	{
+		private ObjCreator objCreator;
+
+		public Faker()
+		{
+			objCreator = new ObjCreator();
+		}
+
 		public T Create<T>()
 			where T : class
 		{
@@ -42,13 +49,13 @@ namespace MPP2
 		}
 		private void SetProperties(object obj, Type type)
 		{
-			PropertyInfo[] myPropertyInfo;
-			myPropertyInfo = type.GetProperties();
-			for (int i=0;i < myPropertyInfo.Length;i++)
+			PropertyInfo[] myPrInfo;
+			myPrInfo = type.GetProperties();
+			for (int i=0;i < myPrInfo.Length;i++)
 			{
-				if (myPropertyInfo[i].CanWrite)
+				if (myPrInfo[i].CanWrite)
 				{
-					myPropertyInfo[i].SetValue(obj, obj);
+					myPrInfo[i].SetValue(obj, objCreator.Create(myPrInfo[i].PropertyType));
 				}
 			}
 		}
