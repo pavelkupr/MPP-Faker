@@ -9,8 +9,17 @@ namespace MPP2
 {
 	class Program
 	{
+		class Test
+		{
+			public int Prop { get; set; }
+		}
+
 		static void Main(string[] args)
 		{
+			Faker creator = new Faker();
+			Test test = creator.Create<Test>();
+			Console.WriteLine(test.Prop);
+			Console.ReadLine();
 		}
 	}
 }

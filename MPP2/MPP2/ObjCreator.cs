@@ -1,19 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 using MPP2.Generator;
 
+// Добавить синглтон и статическое свойство со счетчиком вложенности
 namespace MPP2
 {
 	class ObjCreator
 	{
 		private Dictionary<Type, IGenerator> generators;
+		private Random random;
 
 		public ObjCreator()
 		{
 			generators = new Dictionary<Type, IGenerator>();
+			random = new Random();
+			AddGenerators();
 		}
 
 		public object Create(Type type)
@@ -23,6 +26,14 @@ namespace MPP2
 				return generator.Generate();
 			else
 				return null;
+		}
+
+		private void AddGenerators()
+		{
+			IGenerator[] genArr = { new IntGenerator(random) };
+
+			foreach (IGenerator gen in genArr)
+				generators.Add(gen.GeneratedType,gen);
 		}
 	}
 }

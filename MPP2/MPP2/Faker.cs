@@ -19,11 +19,14 @@ namespace MPP2
 		public T Create<T>()
 			where T : class
 		{
-			T t = CreateObject(typeof(T)) as T;
-			if (t != null)
+			Type typeOfT = typeof(T);
+			T instance = CreateObject(typeOfT) as T;
+		
+			if (instance != null)
 			{
+				SetProperties(instance, typeOfT);
 			}
-			return t;
+			return instance;
 		}
 
 		private object CreateObject(Type type)

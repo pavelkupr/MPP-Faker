@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Faker.cs" />
     <Compile Include="IGenerator.cs" />
+    <Compile Include="IntGenerator.cs" />
     <Compile Include="ObjCreator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
