@@ -12,7 +12,10 @@ namespace MPP2
 		public T Create<T>()
 			where T : class
 		{
-			T t = null;
+			T t = CreateObject(typeof(T)) as T;
+			if (t != null)
+			{
+			}
 			return t;
 		}
 
@@ -36,6 +39,18 @@ namespace MPP2
 			}
 			else
 				return null;
+		}
+		private void SetProperties(object obj, Type type)
+		{
+			PropertyInfo[] myPropertyInfo;
+			myPropertyInfo = type.GetProperties();
+			for (int i=0;i < myPropertyInfo.Length;i++)
+			{
+				if (myPropertyInfo[i].CanWrite)
+				{
+					myPropertyInfo[i].SetValue(obj, obj);
+				}
+			}
 		}
 	}
 }
