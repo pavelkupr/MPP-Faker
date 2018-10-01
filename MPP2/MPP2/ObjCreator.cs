@@ -20,8 +20,17 @@ namespace MPP2
 
 		public object CreateInstance(Type type)
 		{
+			Type typeDefinition;
+
+			if (type.IsGenericType)
+				typeDefinition = type.GetGenericTypeDefinition();
+			else if (type.IsArray)
+				typeDefinition = typeof(Array);
+			else
+				typeDefinition = type;
+
 			IGenerator generator;
-			if (generators.TryGetValue(type, out generator))
+			if (generators.TryGetValue(typeDefinition, out generator))
 				return generator.Generate(type);
 			else
 				return null;
@@ -30,7 +39,9 @@ namespace MPP2
 		private void AddGenerators()
 		{
 			IGenerator[] genArr = { new IntGenerator(random),
-									new LongGenerator(random) };
+									new LongGenerator(random),
+									new ArrayGenerator(random, this),
+									new BaseCollectionsGenerator(this) };
 
 			foreach (IGenerator gen in genArr)
 				foreach (Type type in gen.GeneratedTypes)
