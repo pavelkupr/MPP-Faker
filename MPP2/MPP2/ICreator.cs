@@ -6,13 +6,8 @@ using System.Threading.Tasks;
 
 namespace MPP2
 {
-	namespace Generator
+	interface ICreator
 	{
-		interface IGenerator
-		{
-			Type[] GeneratedTypes { get; }
-
-			object Generate(Type type);
-		}
+		object CreateInstance(Type type);
 	}
 }

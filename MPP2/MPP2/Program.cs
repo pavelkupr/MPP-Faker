@@ -19,11 +19,13 @@ namespace MPP2
 
 	class Test
 	{
-		public TestStruct TStruct{ get; set; }
-		public int Prop { get; set; }
-		public long Prop2 { get; set; }
+		//public TestStruct TStruct{ get; set; }
+		//public int Prop { get; set; }
+		//public long Prop2 { get; set; }
 		public List<int> list { get; set; }
-		public Test Test1 { get; set; }
+		//public Test Test1 { get; set; }
+		//public const int test = 9;
+		//public readonly int testRO;
 	}
 
 	class Program
@@ -33,8 +35,7 @@ namespace MPP2
 		{
 			Faker creator = new Faker();
 			Test test = creator.Create<Test>();
-			Console.WriteLine(test.Prop);
-			
+
 			Console.ReadLine();
 		}
 	}

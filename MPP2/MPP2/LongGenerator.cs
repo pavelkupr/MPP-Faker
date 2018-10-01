@@ -7,17 +7,17 @@ using MPP2.Generator;
 
 namespace MPP2
 {
-	class IntGenerator : IGenerator
+	class LongGenerator : IGenerator
 	{
-		public Type[] GeneratedTypes => new[] { typeof(int) };
+		public Type[] GeneratedTypes => new[] { typeof(long) };
 		private Random _numGen;
 
-		public IntGenerator()
+		public LongGenerator()
 		{
 			_numGen = new Random();
 		}
 
-		public IntGenerator(Random numGen)
+		public LongGenerator(Random numGen)
 		{
 			_numGen = numGen ?? throw new ArgumentNullException();
 		}
@@ -28,9 +28,9 @@ namespace MPP2
 				throw new ArgumentException();
 
 			if (_numGen.Next(2) == 0)
-				return _numGen.Next();
+				return (long)_numGen.Next() * _numGen.Next();
 			else
-				return _numGen.Next() * -1;
+				return (long)_numGen.Next() * _numGen.Next() * - 1;
 		}
 	}
 }

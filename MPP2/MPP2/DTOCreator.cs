@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Reflection;
 
 namespace MPP2
 {
-	class DTOCreator
+	class DTOCreator : ICreator
 	{
 		private ObjCreator objCreator;
 		private byte counter;
@@ -22,10 +18,10 @@ namespace MPP2
 			ConstructorInfo[] constructorsInfo = type.GetConstructors();
 			if (constructorsInfo.Length > 0 && counter < 2)
 			{
-				counter++;
 				object[] pArr;
 				object instance;
 				int indexOfConstr = 0;
+				counter++;
 
 				for (int i = 1; i < constructorsInfo.Length; i++)
 					if (constructorsInfo[i].GetParameters().Length > constructorsInfo[indexOfConstr].GetParameters().Length)
@@ -36,6 +32,7 @@ namespace MPP2
 				{
 					instance = constructorsInfo[indexOfConstr].Invoke(pArr);
 					SetProperties(instance, type);
+					SetFields(instance, type);
 				}
 				catch
 				{
@@ -55,7 +52,7 @@ namespace MPP2
 			int i = 0;
 			foreach (var parameter in parameters)
 			{
-				result[i] = objCreator.Create(parameter.ParameterType) ?? CreateInstance(parameter.ParameterType);
+				result[i] = objCreator.CreateInstance(parameter.ParameterType) ?? CreateInstance(parameter.ParameterType);
 				i++;
 			}
 			return result;
@@ -63,14 +60,26 @@ namespace MPP2
 
 		private void SetProperties(object obj, Type type)
 		{
-			PropertyInfo[] myPrInfo;
-			myPrInfo = type.GetProperties();
+			PropertyInfo[] myPrInfo = type.GetProperties();
 			for (int i = 0; i < myPrInfo.Length; i++)
 			{
 				if (myPrInfo[i].CanWrite)
 				{
-					object value = objCreator.Create(myPrInfo[i].PropertyType) ?? CreateInstance(myPrInfo[i].PropertyType);
+					object value = objCreator.CreateInstance(myPrInfo[i].PropertyType) ?? CreateInstance(myPrInfo[i].PropertyType);
 					myPrInfo[i].SetValue(obj, value);
+				}
+			}
+		}
+
+		private void SetFields(object obj, Type type)
+		{
+			FieldInfo[] myFInfo = type.GetFields();
+			for (int i = 0; i < myFInfo.Length; i++)
+			{
+				if (!(myFInfo[i].IsInitOnly || myFInfo[i].IsStatic))
+				{
+					object value = objCreator.CreateInstance(myFInfo[i].FieldType) ?? CreateInstance(myFInfo[i].FieldType);
+					myFInfo[i].SetValue(obj, value);
 				}
 			}
 		}

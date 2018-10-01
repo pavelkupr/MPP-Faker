@@ -6,7 +6,7 @@ using MPP2.Generator;
 
 namespace MPP2
 {
-	class ObjCreator
+	class ObjCreator : ICreator
 	{
 		private Dictionary<Type, IGenerator> generators;
 		private Random random;
@@ -18,21 +18,23 @@ namespace MPP2
 			AddGenerators();
 		}
 
-		public object Create(Type type)
+		public object CreateInstance(Type type)
 		{
 			IGenerator generator;
 			if (generators.TryGetValue(type, out generator))
-				return generator.Generate();
+				return generator.Generate(type);
 			else
 				return null;
 		}
 
 		private void AddGenerators()
 		{
-			IGenerator[] genArr = { new IntGenerator(random) };
+			IGenerator[] genArr = { new IntGenerator(random),
+									new LongGenerator(random) };
 
 			foreach (IGenerator gen in genArr)
-				generators.Add(gen.GeneratedType,gen);
+				foreach (Type type in gen.GeneratedTypes)
+					generators.Add(type, gen);
 		}
 	}
 }

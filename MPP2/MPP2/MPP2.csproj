@@ -43,10 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CollectionGenerator.cs" />
     <Compile Include="DTOCreator.cs" />
     <Compile Include="Faker.cs" />
+    <Compile Include="ICreator.cs" />
     <Compile Include="IGenerator.cs" />
     <Compile Include="IntGenerator.cs" />
+    <Compile Include="LongGenerator.cs" />
     <Compile Include="ObjCreator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
