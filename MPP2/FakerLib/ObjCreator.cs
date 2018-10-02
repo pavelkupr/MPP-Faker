@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using MPP2.Generator;
+using FakerLib.Generator;
 
-namespace MPP2
+namespace FakerLib
 {
 	class ObjCreator : ICreator
 	{
@@ -40,6 +40,8 @@ namespace MPP2
 		{
 			IGenerator[] genArr = { new IntGenerator(random),
 									new LongGenerator(random),
+									new StringGenerator(random),
+									new DateTimeGenerator(random),
 									new ArrayGenerator(random, this),
 									new BaseCollectionsGenerator(this) };
 

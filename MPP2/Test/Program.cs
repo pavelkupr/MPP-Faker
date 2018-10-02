@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Reflection;
+using FakerLib;
 
-namespace MPP2
+namespace Test
 {
 	struct TestStruct
 	{
@@ -19,11 +19,13 @@ namespace MPP2
 
 	class Test
 	{
-		public TestStruct TStruct{ get; set; }
+		public TestStruct TStruct { get; set; }
 		public int[,,] Prop { get; set; }
 		public long Prop2 { get; set; }
 		public Queue<int[]> list { get; set; }
 		public Test Test1 { get; set; }
+		public string[] String { get; set; }
+		public DateTime[] DateTime { get; set; }
 		public int test;
 		public long[] testRO;
 	}

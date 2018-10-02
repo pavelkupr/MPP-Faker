@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("MPP2")]
+[assembly: AssemblyTitle("MyPlagins")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MPP2")]
+[assembly: AssemblyProduct("MyPlagins")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("9f2e0096-69f3-4e66-8afb-8c7f8633dcd4")]
+[assembly: Guid("79bd8ce1-cca4-4e13-9a20-20e50b1f5962")]
 
 // Сведения о версии сборки состоят из следующих четырех значений:
 //

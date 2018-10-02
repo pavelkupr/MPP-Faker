@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
 
-namespace MPP2
+namespace FakerLib
 {
-	class Faker
+	public class Faker
 	{
 		private DTOCreator _DTOCreator;
 
@@ -22,6 +22,6 @@ namespace MPP2
 			Type typeOfT = typeof(T);
 			T instance = _DTOCreator.CreateInstance(typeOfT) as T;
 			return instance;
-		}	
+		}
 	}
 }

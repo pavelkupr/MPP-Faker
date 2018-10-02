@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MPP2.Generator;
+using FakerLib.Generator;
 
-namespace MPP2
+namespace FakerLib
 {
 	class ArrayGenerator : IGenerator
 	{
 		public Type[] GeneratedTypes => new[] { typeof(Array) };
+		private const int minLength = 1, maxLength = 10;
 		private ObjCreator _objCreator;
 		private Random _numGen;
 
@@ -31,16 +32,16 @@ namespace MPP2
 				throw new ArgumentException();
 
 			int[] length = new int[type.GetArrayRank()];
-			for (int i = 0; i<length.Length; i++)
+			for (int i = 0; i < length.Length; i++)
 			{
-				length[i] = _numGen.Next(1, 10);
+				length[i] = _numGen.Next(minLength, maxLength);
 			}
 			Array arr = Array.CreateInstance(type.GetElementType(), length);
 			FillArray(arr);
 			return arr;
 		}
 
-		private void FillArray(Array array, int count = 0,int[] elementId = null)
+		private void FillArray(Array array, int count = 0, int[] elementId = null)
 		{
 			elementId = elementId ?? new int[array.Rank];
 
@@ -51,7 +52,7 @@ namespace MPP2
 				if (count == array.Rank - 1)
 					array.SetValue(_objCreator.CreateInstance(array.GetType().GetElementType()), elementId);
 				else
-					FillArray(array,count+1,elementId);
+					FillArray(array, count + 1, elementId);
 			}
 		}
 	}

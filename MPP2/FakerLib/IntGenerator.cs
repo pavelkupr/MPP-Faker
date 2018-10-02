@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MPP2.Generator;
+using FakerLib.Generator;
 
-namespace MPP2
+namespace FakerLib
 {
-	class LongGenerator : IGenerator
+	class IntGenerator : IGenerator
 	{
-		public Type[] GeneratedTypes => new[] { typeof(long) };
+		public Type[] GeneratedTypes => new[] { typeof(int) };
 		private Random _numGen;
 
-		public LongGenerator()
+		public IntGenerator()
 		{
 			_numGen = new Random();
 		}
 
-		public LongGenerator(Random numGen)
+		public IntGenerator(Random numGen)
 		{
 			_numGen = numGen ?? throw new ArgumentNullException();
 		}
@@ -28,9 +28,9 @@ namespace MPP2
 				throw new ArgumentException();
 
 			if (_numGen.Next(2) == 0)
-				return (long)_numGen.Next() * _numGen.Next();
+				return _numGen.Next();
 			else
-				return (long)_numGen.Next() * _numGen.Next() * - 1;
+				return -_numGen.Next();
 		}
 	}
 }

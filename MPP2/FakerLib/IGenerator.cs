@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MPP2
+namespace FakerLib
 {
 	namespace Generator
 	{
-		interface IGenerator
+		public interface IGenerator
 		{
 			Type[] GeneratedTypes { get; }
 

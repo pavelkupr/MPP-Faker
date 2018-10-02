@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
-using MPP2.Generator;
+using FakerLib.Generator;
 
-namespace MPP2
+namespace FakerLib
 {
 	class BaseCollectionsGenerator : IGenerator
 	{
@@ -27,11 +27,11 @@ namespace MPP2
 		{
 			if (!GeneratedTypes.Contains(type.GetGenericTypeDefinition()))
 				throw new ArgumentException();
-			
+
 			ConstructorInfo constructor = type.GetConstructor(new Type[] { typeof(IEnumerable<>).MakeGenericType(type.GenericTypeArguments) });
-			
+
 			object[] args = new[] { _objCreator.CreateInstance(type.GenericTypeArguments[0].MakeArrayType()) };
-			
+
 			return constructor.Invoke(args);
 		}
 	}
