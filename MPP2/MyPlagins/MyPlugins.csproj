@@ -7,8 +7,8 @@
     <ProjectGuid>{79BD8CE1-CCA4-4E13-9A20-20E50B1F5962}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MyPlagins</RootNamespace>
-    <AssemblyName>MyPlagins</AssemblyName>
+    <RootNamespace>MyPlugins</RootNamespace>
+    <AssemblyName>MyPlugins</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,8 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DoubleGenerator.cs" />
     <Compile Include="FloatGenerator.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\MyPlugins\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FakerLib\FakerLib.csproj">

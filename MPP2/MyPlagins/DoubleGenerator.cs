@@ -4,18 +4,18 @@ using FakerLib.Generator;
 
 namespace MyPlugins
 {
-	public class FloatGenerator : IGenerator
+	public class DoubleGenerator : IGenerator
 	{
-		public Type[] GeneratedTypes => new[] { typeof(float) };
-		private const int minPow = -44, maxPow = 39;
+		public Type[] GeneratedTypes => new[] { typeof(double) };
+		private const int minPow = -323, maxPow = 309;
 		private Random _numGen;
 
-		public FloatGenerator()
+		public DoubleGenerator()
 		{
 			_numGen = new Random();
 		}
 
-		public FloatGenerator(Random numGen)
+		public DoubleGenerator(Random numGen)
 		{
 			_numGen = numGen ?? throw new ArgumentNullException();
 		}
@@ -24,9 +24,9 @@ namespace MyPlugins
 		{
 			if (!GeneratedTypes.Contains(type))
 				throw new ArgumentException();
-			
+
 			double exponent = Math.Pow(10.0, _numGen.Next(minPow, maxPow));
-			return (float)(_numGen.NextDouble() * exponent);
+			return _numGen.NextDouble() * exponent;
 		}
 	}
 }

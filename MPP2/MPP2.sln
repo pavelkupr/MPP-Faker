@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakerLib", "FakerLib\FakerLib.csproj", "{D6F41C77-9122-4AA9-985D-F7634E980B01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyPlagins", "MyPlagins\MyPlagins.csproj", "{79BD8CE1-CCA4-4E13-9A20-20E50B1F5962}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyPlugins", "MyPlagins\MyPlugins.csproj", "{79BD8CE1-CCA4-4E13-9A20-20E50B1F5962}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

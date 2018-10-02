@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FakerLib.Generator;
 
 namespace FakerLib
@@ -10,6 +7,7 @@ namespace FakerLib
 	class IntGenerator : IGenerator
 	{
 		public Type[] GeneratedTypes => new[] { typeof(int) };
+		private const int minValue = -2147483648, maxValue = 2147483647;
 		private Random _numGen;
 
 		public IntGenerator()
@@ -26,11 +24,8 @@ namespace FakerLib
 		{
 			if (!GeneratedTypes.Contains(type))
 				throw new ArgumentException();
-
-			if (_numGen.Next(2) == 0)
-				return _numGen.Next();
-			else
-				return -_numGen.Next();
+			
+			return _numGen.Next(minValue,maxValue);
 		}
 	}
 }

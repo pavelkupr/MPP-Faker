@@ -51,6 +51,7 @@
     <Compile Include="IntGenerator.cs" />
     <Compile Include="LongGenerator.cs" />
     <Compile Include="ObjCreator.cs" />
+    <Compile Include="PluginInstaller.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringGenerator.cs" />
   </ItemGroup>

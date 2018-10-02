@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using FakerLib.Generator;
 
 namespace FakerLib
 {
-	class ObjCreator : ICreator
+	public class ObjCreator : ICreator
 	{
 		private Dictionary<Type, IGenerator> generators;
+		private PluginInstaller pluginInstaller;
 		private Random random;
 
 		public ObjCreator()
 		{
 			generators = new Dictionary<Type, IGenerator>();
+			pluginInstaller = new PluginInstaller();
 			random = new Random();
 			AddGenerators();
+			AddPlugins();
 		}
 
 		public object CreateInstance(Type type)
@@ -46,6 +47,13 @@ namespace FakerLib
 									new BaseCollectionsGenerator(this) };
 
 			foreach (IGenerator gen in genArr)
+				foreach (Type type in gen.GeneratedTypes)
+					generators.Add(type, gen);
+		}
+
+		private void AddPlugins()
+		{
+			foreach (IGenerator gen in pluginInstaller.Plugins)
 				foreach (Type type in gen.GeneratedTypes)
 					generators.Add(type, gen);
 		}

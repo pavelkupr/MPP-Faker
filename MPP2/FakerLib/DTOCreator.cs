@@ -6,6 +6,7 @@ namespace FakerLib
 	class DTOCreator : ICreator
 	{
 		private ObjCreator objCreator;
+		private const byte maxNesting = 2;
 		private byte counter;
 
 		public DTOCreator()
@@ -16,7 +17,7 @@ namespace FakerLib
 		public object CreateInstance(Type type)
 		{
 			ConstructorInfo[] constructorsInfo = type.GetConstructors();
-			if (constructorsInfo.Length > 0 && counter < 2)
+			if (constructorsInfo.Length > 0 && counter < maxNesting)
 			{
 				object instance;
 				int indexOfConstr = 0;

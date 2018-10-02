@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FakerLib;
 
 namespace Test
@@ -26,6 +23,8 @@ namespace Test
 		public Test Test1 { get; set; }
 		public string[] String { get; set; }
 		public DateTime[] DateTime { get; set; }
+		public double doubleTest { get; set; }
+		public float[] flNums { get; set; }
 		public int test;
 		public long[] testRO;
 	}
