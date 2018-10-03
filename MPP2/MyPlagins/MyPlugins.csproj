@@ -43,9 +43,7 @@
   <ItemGroup>
     <Compile Include="DoubleGenerator.cs" />
     <Compile Include="FloatGenerator.cs" />
-    <Compile Include="..\MyPlugins\Properties\AssemblyInfo.cs">
-      <Link>Properties\AssemblyInfo.cs</Link>
-    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FakerLib\FakerLib.csproj">

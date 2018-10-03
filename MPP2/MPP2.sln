@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakerLib", "FakerLib\FakerL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyPlugins", "MyPlagins\MyPlugins.csproj", "{79BD8CE1-CCA4-4E13-9A20-20E50B1F5962}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakerUnitTest", "FakerUnitTest\FakerUnitTest.csproj", "{062CDCEF-70D3-48CC-BFF1-DEBBB3B95C9C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{79BD8CE1-CCA4-4E13-9A20-20E50B1F5962}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79BD8CE1-CCA4-4E13-9A20-20E50B1F5962}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79BD8CE1-CCA4-4E13-9A20-20E50B1F5962}.Release|Any CPU.Build.0 = Release|Any CPU
+		{062CDCEF-70D3-48CC-BFF1-DEBBB3B95C9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{062CDCEF-70D3-48CC-BFF1-DEBBB3B95C9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{062CDCEF-70D3-48CC-BFF1-DEBBB3B95C9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{062CDCEF-70D3-48CC-BFF1-DEBBB3B95C9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
