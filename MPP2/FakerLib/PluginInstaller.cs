@@ -33,12 +33,11 @@ namespace FakerLib
 			{
 				Assembly asm = Assembly.LoadFrom(file);
 				var types = asm.GetTypes().
-								Where(t => t.GetInterfaces().
-								Where(i => i.FullName == typeof(IGenerator).FullName).Any());
+								Where(t => t.GetInterfaces().Contains(typeof(IGenerator)));
 				
 				foreach (Type type in types)
 				{
-					IGenerator plugin = asm.CreateInstance(type.FullName) as IGenerator;
+					IGenerator plugin = Activator.CreateInstance(type) as IGenerator;
 					plugins.Add(plugin);
 				}
 			}

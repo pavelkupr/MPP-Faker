@@ -11,6 +11,7 @@ namespace FakerUnitTest
 		public long Long { get; set; }
 		public Queue<int[]> QueueOfIntArr { get; set; }
 		public Test1 NestedTestDTO { get; set; }
+		public Test3 NestedTestDTO2 { get; set; }
 		public string String { get; set; }
 		public DateTime DateTime { get; set; }
 		public int intField;
@@ -21,7 +22,6 @@ namespace FakerUnitTest
 		public Test2(int param1)
 		{
 			Integer = param1;
-			IsSecondConstructorCalled = false;
 		}
 
 		public Test2(int param1, int param2)
@@ -32,6 +32,11 @@ namespace FakerUnitTest
 
 		public int Integer { get; }
 		public bool IsSecondConstructorCalled { get; }
+	}
+
+	class Test3
+	{
+		public Test2 NestedTestDTO { get; set; }
 	}
 
 	[TestClass]
@@ -58,13 +63,16 @@ namespace FakerUnitTest
 		[TestMethod]
 		public void Integer_Arr_Property_Is_Not_Null()
 		{
-			Assert.IsNotNull(test1DTO.IntArr, "Faker hasn't created array of integer property");
+			if (test2DTO.Integer == 0)
+				Assert.Fail("Faker hasn't created array of integer property");
 		}
 
 		[TestMethod]
 		public void Long_Property_Is_Not_Null()
 		{
-			Assert.IsNotNull(test1DTO.Long, "Faker hasn't created long property");
+
+			if (test2DTO.Integer == 0)
+				Assert.Fail("Faker hasn't created long property");
 		}
 
 		[TestMethod]
@@ -94,7 +102,8 @@ namespace FakerUnitTest
 		[TestMethod]
 		public void Int_Field_Is_Not_Null()
 		{
-			Assert.IsNotNull(test1DTO.intField, "Faker hasn't created integer field");
+			if (test2DTO.Integer == 0)
+				Assert.Fail("Faker hasn't created integer field");
 		}
 
 		[TestMethod]
@@ -112,7 +121,14 @@ namespace FakerUnitTest
 		[TestMethod]
 		public void Integer_Parameter_Of_DTO_Constructor_Is_Not_Null()
 		{
-			Assert.IsNotNull(test2DTO.Integer, "Faker hasn't created integer parameter");
+			if(test2DTO.Integer == 0)
+				Assert.Fail("Faker hasn't created integer parameter");
+		}
+
+		[TestMethod]
+		public void Nested_DTO_Property_Of_Nested_DTO2_Is_Not_Null()
+		{
+			Assert.IsNotNull(test1DTO.NestedTestDTO2.NestedTestDTO, "Faker hasn't created nested DTO property of nested DTO2");
 		}
 	}
 }

@@ -24,8 +24,13 @@ namespace FakerLib
 		{
 			if (!GeneratedTypes.Contains(type))
 				throw new ArgumentException();
-			
-			return (long)_numGen.Next(minValue,maxValue) * _numGen.Next();
+
+			long result = (long)_numGen.Next(minValue, maxValue) * _numGen.Next();
+
+			if (result == 0)
+				result = 1;
+
+			return result;
 		}
 	}
 }

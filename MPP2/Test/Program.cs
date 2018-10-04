@@ -20,7 +20,8 @@ namespace Test
 		public int[,,] Prop { get; set; }
 		public long Prop2 { get; set; }
 		public Queue<int[]> list { get; set; }
-		public Test Test1 { get; set; }
+		public Test2 Test1 { get; set; }
+		public Test2 Test2 { get; set; }
 		public string[] String { get; set; }
 		public DateTime[] DateTime { get; set; }
 		public double doubleTest { get; set; }
@@ -28,7 +29,10 @@ namespace Test
 		public int test;
 		public long[] testRO;
 	}
-
+	class Test2
+	{
+		public Test Test1 { get; set; }
+	}
 	class Program
 	{
 

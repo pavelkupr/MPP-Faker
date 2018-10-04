@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 
 namespace FakerLib
@@ -6,22 +7,34 @@ namespace FakerLib
 	class DTOCreator : ICreator
 	{
 		private ObjCreator objCreator;
-		private const byte maxNesting = 2;
-		private byte counter;
+		private List<Type> parentTypes;
+		private Stack<Type> nesting;
 
 		public DTOCreator()
 		{
 			objCreator = new ObjCreator();
+			parentTypes = new List<Type>();
+			nesting = new Stack<Type>();
 		}
 
 		public object CreateInstance(Type type)
 		{
+			bool isNotRecurtion = false;
+
+			if (nesting.Count == 0)
+				isNotRecurtion = true;
+			else if (!parentTypes.Contains(nesting.Peek()))
+				isNotRecurtion = true;
+
 			ConstructorInfo[] constructorsInfo = type.GetConstructors();
-			if (constructorsInfo.Length > 0 && counter < maxNesting)
+			if (constructorsInfo.Length > 0 && isNotRecurtion)
 			{
 				object instance;
 				int indexOfConstr = 0;
-				counter++;
+
+				if (nesting.Count != 0)
+					parentTypes.Add(nesting.Peek());
+				nesting.Push(type);
 
 				for (int i = 1; i < constructorsInfo.Length; i++)
 					if (constructorsInfo[i].GetParameters().Length > constructorsInfo[indexOfConstr].GetParameters().Length)
@@ -38,8 +51,9 @@ namespace FakerLib
 				{
 					instance = null;
 				}
-
-				counter--;
+				nesting.Pop();
+				if (nesting.Count != 0)
+					parentTypes.Remove(nesting.Peek());
 				return instance;
 			}
 			else

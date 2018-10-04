@@ -15,7 +15,22 @@ namespace FakerLib
 			generators = new Dictionary<Type, IGenerator>();
 			pluginInstaller = new PluginInstaller();
 			random = new Random();
-			AddGenerators();
+			IGenerator[] generatorArr = { new IntGenerator(random),
+										  new LongGenerator(random),
+									      new StringGenerator(random),
+							       	      new DateTimeGenerator(random),
+									      new ArrayGenerator(random, this),
+									      new BaseCollectionsGenerator(this) };
+			AddGenerators(generatorArr);
+			AddPlugins();
+		}
+
+		public ObjCreator(IGenerator[] generatorArr)
+		{
+			generators = new Dictionary<Type, IGenerator>();
+			pluginInstaller = new PluginInstaller();
+			random = new Random();
+			AddGenerators(generatorArr);
 			AddPlugins();
 		}
 
@@ -37,16 +52,9 @@ namespace FakerLib
 				return null;
 		}
 
-		private void AddGenerators()
+		private void AddGenerators(IGenerator[] generatorArr)
 		{
-			IGenerator[] genArr = { new IntGenerator(random),
-									new LongGenerator(random),
-									new StringGenerator(random),
-									new DateTimeGenerator(random),
-									new ArrayGenerator(random, this),
-									new BaseCollectionsGenerator(this) };
-
-			foreach (IGenerator gen in genArr)
+			foreach (IGenerator gen in generatorArr)
 				foreach (Type type in gen.GeneratedTypes)
 					generators.Add(type, gen);
 		}
